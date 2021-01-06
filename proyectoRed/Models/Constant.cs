@@ -8,7 +8,7 @@ namespace proyectoRed.Models
 {
     class Constant
     {
-        public static string url = "http://192.168.100.15:80/api/";
+        public static string url = "http://192.168.100.29:8000/api/";
         public static string authToken;
         public static string username;
     }

@@ -30,6 +30,7 @@ namespace proyectoRed.VentanasIntlok
         public Perfil()
         {
             InitializeComponent();
+            buscarDatosPerfil();
             txt_usuario.Content = Constant.username;
         }
 
@@ -45,11 +46,11 @@ namespace proyectoRed.VentanasIntlok
             IRestResponse response2 = client2.Execute(request);
             var content2 = response2.Content;
 
-            dynamic jsonResponse = JsonConvert.DeserializeObject(content2);
+            //dynamic jsonResponse = JsonConvert.DeserializeObject(content2);
 
-            dynamic jsonObject = jsonResponse.MRData.CircuitTable;
-            string info = (string)jsonObject.info;
-            System.Console.WriteLine(jsonObject);
+            //dynamic jsonObject = jsonResponse.MRData.CircuitTable;
+            //string info = (string)jsonObject.info;
+            Console.WriteLine("JSON: " + content2);
 
 
             txt_Info.Text = info;
@@ -74,6 +75,8 @@ namespace proyectoRed.VentanasIntlok
 
                     request.AddParameter("ruta", bitmap);
                     request.AddParameter("token", Constant.authToken);
+
+                    MessageBox.Show(bitmap.ToString());
 
                     IRestResponse response = client.Execute(request);
                     var content = response.Content;
@@ -112,9 +115,11 @@ namespace proyectoRed.VentanasIntlok
 
         private void btn_cambiarFoto_Click(object sender, RoutedEventArgs e)
         {
+           
             OpenFileDialog seleccionar = new OpenFileDialog();
             seleccionar.Filter = "Imagenes|*.jpg; *.png";
             seleccionar.Title = "Seleccionar imagen";
+           
 
             if (seleccionar.ShowDialog() == true)
             {
@@ -126,7 +131,6 @@ namespace proyectoRed.VentanasIntlok
                 bitmap = new BitmapImage(file);
 
                 img_ImgenPerfil.Source = bitmap;
-
                 bandImg = true;
             }
         }

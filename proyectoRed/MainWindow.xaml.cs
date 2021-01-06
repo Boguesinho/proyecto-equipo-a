@@ -124,7 +124,7 @@ namespace proyectoRed
 
         private void btn_CerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            var client = new RestClient("http://192.168.100.15:80/api/");
+            var client = new RestClient(Constant.url);
 
 
             var request = new RestRequest("logout", Method.POST);

@@ -55,7 +55,7 @@ namespace proyectoRed.VentanasIntlok
                     var client = new RestClient(Constant.url);
                     
 
-                    var request = new RestRequest("register", Method.POST);
+                    var request = new RestRequest("registerUser", Method.POST);
 
                     request.AddParameter("username", txtBox_Usuario.Text);
                     request.AddParameter("password", txt_Password.Password);
@@ -68,18 +68,21 @@ namespace proyectoRed.VentanasIntlok
 
 
 
-                    IRestResponse response = client.Execute(request);
-                    var content = response.Content;
+                    var response = client.Execute(request);
 
                     if (response.IsSuccessful)
                     {
 
-                        Console.WriteLine(content);
+                        MessageBox.Show("USUARIO REGISTRADO");
 
                         Login nuevoLogin = new Login();
                         nuevoLogin.Show();
                         this.Close();
-                    }    
+                    }
+                    else
+                    {
+                        MessageBox.Show("FALLO: " + response.Content);
+                    }
                     
                 }
                 else

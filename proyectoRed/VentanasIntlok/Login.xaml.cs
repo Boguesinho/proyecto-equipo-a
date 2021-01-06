@@ -61,7 +61,7 @@ namespace proyectoRed.VentanasIntlok
         {
             if (validacion())
             {
-                var client = new RestClient("http://192.168.100.15:80/api/");
+                var client = new RestClient(Constant.url);
 
 
                 var request = new RestRequest("login", Method.GET);

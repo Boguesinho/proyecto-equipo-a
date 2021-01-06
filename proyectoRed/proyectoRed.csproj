@@ -97,6 +97,9 @@
     <Compile Include="VentanasIntlok\Comentarios.xaml.cs">
       <DependentUpon>Comentarios.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasIntlok\CreacionPost.xaml.cs">
+      <DependentUpon>CreacionPost.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasIntlok\Estado.xaml.cs">
       <DependentUpon>Estado.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasIntlok\Comentarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasIntlok\CreacionPost.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

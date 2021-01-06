@@ -22,9 +22,12 @@ namespace proyectoRed.VentanasIntlok
     {
 
         int cantidadPosts = 10;
+        CreacionPost creacionPost = new CreacionPost();
 
         public Inicio()
         {
+            creacionPost.Show();
+            creacionPost.Visibility = Visibility.Collapsed;
             InitializeComponent();
             mostrarPosts();
 
@@ -47,5 +50,9 @@ namespace proyectoRed.VentanasIntlok
 
         }
 
+        private void btn_SubirPost_Click(object sender, RoutedEventArgs e)
+        {
+            creacionPost.Visibility = Visibility.Visible;
+        }
     }
 }
