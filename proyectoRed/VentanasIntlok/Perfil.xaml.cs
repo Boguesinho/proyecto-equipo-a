@@ -4,8 +4,11 @@ using proyectoRed.Models;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Image = System.Drawing.Image;
 
 namespace proyectoRed.VentanasIntlok
 {
@@ -24,9 +28,11 @@ namespace proyectoRed.VentanasIntlok
     /// </summary>
     public partial class Perfil : UserControl
     {
-        private string info;
-        BitmapImage bitmap;
+        BitmapImage bitmapImage;
         private bool bandImg=false;
+        String imagen;
+
+
         public Perfil()
         {
             InitializeComponent();
@@ -40,20 +46,17 @@ namespace proyectoRed.VentanasIntlok
             var client2 = new RestClient(Constant.url);
 
             var request = new RestRequest("getCuenta",Method.GET);
+
+            request.AddHeader("Authorization", Constant.authToken);
             request.AddParameter("token",Constant.authToken);
 
 
             IRestResponse response2 = client2.Execute(request);
             var content2 = response2.Content;
 
-            //dynamic jsonResponse = JsonConvert.DeserializeObject(content2);
+            var perfilResponse = JsonConvert.DeserializeObject<PerfilResponse>(content2);
 
-            //dynamic jsonObject = jsonResponse.MRData.CircuitTable;
-            //string info = (string)jsonObject.info;
-            Console.WriteLine("JSON: " + content2);
-
-
-            txt_Info.Text = info;
+            txt_Info.Text = perfilResponse.Info;
         }
 
 
@@ -70,31 +73,41 @@ namespace proyectoRed.VentanasIntlok
 
                 if (bandImg)
                 {
-
                     var request = new RestRequest("subirFotoPerfil", Method.POST);
 
-                    request.AddParameter("ruta", bitmap);
+                    request.AddHeader("Authorization", Constant.authToken);
                     request.AddParameter("token", Constant.authToken);
-
-                    MessageBox.Show(bitmap.ToString());
+                    request.AddParameter("ruta", imagen);
+                    
 
                     IRestResponse response = client.Execute(request);
                     var content = response.Content;
 
+                    Console.WriteLine("RETORNO: " + content);
 
-                    var request2 = new RestRequest("editInfo", Method.POST);
+                    var request2 = new RestRequest("cuenta/editInfo", Method.PUT);
+                    
+                    request2.AddHeader("Authorization", Constant.authToken);
+                    request2.AddParameter("token", Constant.authToken);
                     request2.AddParameter("info", txt_Info.Text);
 
                     IRestResponse response2 = client.Execute(request2);
                     var content2 = response2.Content;
+
+                    MessageBox.Show("Información actualizada");
                 }
                 else
                 {
-                    var request2 = new RestRequest("editInfo", Method.POST);
+                    var request2 = new RestRequest("cuenta/editInfo", Method.PUT);
+
+                    request2.AddHeader("Authorization", Constant.authToken);
+                    request2.AddParameter("token", Constant.authToken);
                     request2.AddParameter("info", txt_Info.Text);
 
                     IRestResponse response2 = client.Execute(request2);
                     var content2 = response2.Content;
+
+                    MessageBox.Show("Información actualizada");
 
                 }
             }
@@ -119,20 +132,29 @@ namespace proyectoRed.VentanasIntlok
             OpenFileDialog seleccionar = new OpenFileDialog();
             seleccionar.Filter = "Imagenes|*.jpg; *.png";
             seleccionar.Title = "Seleccionar imagen";
-           
+
 
             if (seleccionar.ShowDialog() == true)
             {
-                var imgName=seleccionar.SafeFileName;
+                var imgName = seleccionar.SafeFileName;
                 var img = seleccionar.FileName;
 
-
                 Uri file = new Uri(img);
-                bitmap = new BitmapImage(file);
+                bitmapImage = new BitmapImage(file);
 
-                img_ImgenPerfil.Source = bitmap;
+                img_ImgenPerfil.Source = bitmapImage;
                 bandImg = true;
+
+
+                imagen = file.ToString();
+
+                Console.WriteLine("img: " + imagen);
+                Console.WriteLine("file: " + file);
+                Console.WriteLine("bitmap: " + bitmapImage);
+
             }
+
+         
         }
     }
 }

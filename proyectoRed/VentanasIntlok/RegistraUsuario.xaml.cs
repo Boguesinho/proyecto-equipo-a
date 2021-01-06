@@ -55,22 +55,27 @@ namespace proyectoRed.VentanasIntlok
                     var client = new RestClient(Constant.url);
                     
 
-                    var request = new RestRequest("registerUser", Method.POST);
+                    var requestCuenta = new RestRequest("create", Method.POST);
 
-                    request.AddParameter("username", txtBox_Usuario.Text);
-                    request.AddParameter("password", txt_Password.Password);
+                    
+                    requestCuenta.AddParameter("nombre", txtBox_Nombre.Text);
+                    requestCuenta.AddParameter("apellidos", txtBox_Apellidos.Text);
+                    requestCuenta.AddParameter("email", txtBox_Correo.Text);
+                    requestCuenta.AddParameter("telefono", txtBox_Telefono.Text);
+                    requestCuenta.AddParameter("genero", cb_Genero.SelectedValue.ToString());
 
-                    request.AddParameter("nombre", txtBox_Nombre.Text);
-                    request.AddParameter("apellidos", txtBox_Apellidos.Text);
-                    request.AddParameter("email", txtBox_Correo.Text);
-                    request.AddParameter("telefono", txtBox_Telefono.Text);
-                    request.AddParameter("genero", cb_Genero.SelectedValue.ToString());
+                    //var responseCuenta = client.Execute(requestCuenta);
+
+                    var requestUsuario = new RestRequest("registerUser", Method.POST);
+
+                    requestUsuario.AddParameter("username", txtBox_Usuario.Text);
+                    requestUsuario.AddParameter("password", txt_Password.Password);
 
 
+                    var responseUsuario = client.Execute(requestUsuario);
 
-                    var response = client.Execute(request);
 
-                    if (response.IsSuccessful)
+                    if (responseUsuario.IsSuccessful)
                     {
 
                         MessageBox.Show("USUARIO REGISTRADO");
@@ -81,7 +86,7 @@ namespace proyectoRed.VentanasIntlok
                     }
                     else
                     {
-                        MessageBox.Show("FALLO: " + response.Content);
+                        Console.WriteLine("FALLO: " + responseUsuario.Content);
                     }
                     
                 }

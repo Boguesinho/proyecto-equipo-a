@@ -70,19 +70,16 @@ namespace proyectoRed.VentanasIntlok
                 request.AddParameter("username", txtBox_Usuario.Text);
                 request.AddParameter("password", txtBox_Password.Password);
 
-
                 
-                RestResponse<LoginResponse> response2 = (RestResponse<LoginResponse>)client.Execute<LoginResponse>(request);
-                var token = response2.Data.Token;
-                /*
-                IRestResponse response = client.Execute(request);
-                var content = response.Content;*/
+                RestResponse<LoginResponse> response = (RestResponse<LoginResponse>)client.Execute<LoginResponse>(request);
+                var token = response.Data.Token;
+
                 String authtoken = "Bearer "+token;
                 Constant.authToken = authtoken;
 
                 Console.WriteLine(authtoken);
 
-                if (response2.IsSuccessful)
+                if (response.IsSuccessful)
                 {
                     Constant.username=txtBox_Usuario.Text;
                     Console.WriteLine("Acceso correcto");
@@ -93,7 +90,7 @@ namespace proyectoRed.VentanasIntlok
                 }
                 else
                 {
-                    Console.WriteLine("Acceso incorrecto");
+                    Console.WriteLine("Acceso incorrecto con data: " + response.Content);
                 }
             }
             else
