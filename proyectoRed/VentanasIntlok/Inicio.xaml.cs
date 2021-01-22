@@ -20,14 +20,31 @@ namespace proyectoRed.VentanasIntlok
     /// </summary>
     public partial class Inicio : UserControl
     {
+
+        int cantidadPosts = 10;
+
         public Inicio()
         {
             InitializeComponent();
+            mostrarPosts();
+
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void mostrarPosts()
+        {
+            for (int i = 0; i < cantidadPosts; i++)
+            {
+                gridFeed.Children.Add(new Post(i * 720));
+                gridFeed.Height += 720;
+                
+            }
+            scrollFeed.ScrollToVerticalOffset(gridFeed.Height - 500 - (cantidadPosts * 360));
+
         }
     }
 }

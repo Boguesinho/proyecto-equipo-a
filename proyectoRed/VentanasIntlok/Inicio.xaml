@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:proyectoRed.VentanasIntlok" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:proyectoRed.VentanasIntlok" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" Height="643" Width="879">
 
     <Grid>
@@ -17,7 +18,16 @@
 
             </Grid>
 
+        </materialDesign:TransitioningContent>
 
+
+
+
+        <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlidee" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.4}">
+            <ScrollViewer x:Name="scrollFeed" Margin="0,42,0,0" Background="White">
+                <Grid x:Name="gridFeed" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="879" Height="601" Background="#FF999999" RenderTransformOrigin="0.488,-0.247">
+                </Grid>
+            </ScrollViewer>
         </materialDesign:TransitioningContent>
 
         <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" Foreground="White" Margin="855.5,0,0,621" Height="22" Width="22" Background="#FFE05959" RenderTransformOrigin="2.59,-0.56"/>
