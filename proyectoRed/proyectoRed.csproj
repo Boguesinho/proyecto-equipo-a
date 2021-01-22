@@ -88,6 +88,9 @@
     <Compile Include="VentanasIntlok\Estado.xaml.cs">
       <DependentUpon>Estado.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasIntlok\Historia.xaml.cs">
+      <DependentUpon>Historia.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasIntlok\Inicio.xaml.cs">
       <DependentUpon>Inicio.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VentanasIntlok\Estado.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasIntlok\Historia.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

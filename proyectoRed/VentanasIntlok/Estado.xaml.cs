@@ -20,14 +20,28 @@ namespace proyectoRed.VentanasIntlok
     /// </summary>
     public partial class Estado : UserControl
     {
+        private int cantidadEstados = 10;
         public Estado()
         {
             InitializeComponent();
+            mostrarPosts();
         }
 
         private void BtnSalir_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void mostrarPosts()
+        {
+            for (int i = 0; i < cantidadEstados; i++)
+            {
+                gridEstados.Children.Add(new Historia(i * 720, i + 1));
+                gridEstados.Height += 720;
+
+            }
+            scrollEstados.ScrollToVerticalOffset(gridEstados.Height - 500 - (cantidadEstados * 360));
+
         }
     }
 }
