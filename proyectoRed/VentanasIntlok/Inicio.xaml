@@ -25,10 +25,12 @@
 
         <materialDesign:TransitioningContent x:Name="TrainsitionigContentSlidee" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.4}">
             <ScrollViewer x:Name="scrollFeed" Margin="0,42,0,0" Background="White">
-                <Grid x:Name="gridFeed" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="879" Height="601" Background="#FF999999" RenderTransformOrigin="0.488,-0.247">
-                </Grid>
+                <Grid x:Name="gridFeed" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="879" Height="601" Background="#FF999999" RenderTransformOrigin="0.488,-0.247"/>
             </ScrollViewer>
         </materialDesign:TransitioningContent>
+
+        <Grid x:Name="gridComentarios" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="879" Height="601" RenderTransformOrigin="0.488,-0.247"/>
+
 
         <materialDesign:PackIcon Kind="Close" VerticalAlignment="Center" Foreground="White" Margin="855.5,0,0,621" Height="22" Width="22" Background="#FFE05959" RenderTransformOrigin="2.59,-0.56"/>
         <Button HorizontalAlignment="Right" FontFamily="Impact" FontSize="18" Background="{x:Null}" BorderBrush="#FFE05959" Margin="0,0,0,621" Width="22" Height="22" Click="BtnSalir_Click"/>

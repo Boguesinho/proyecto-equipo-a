@@ -82,6 +82,9 @@
     <Compile Include="VentanasIntlok\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VentanasIntlok\Comentarios.xaml.cs">
+      <DependentUpon>Comentarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VentanasIntlok\Estado.xaml.cs">
       <DependentUpon>Estado.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="VentanasIntlok\Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VentanasIntlok\Comentarios.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

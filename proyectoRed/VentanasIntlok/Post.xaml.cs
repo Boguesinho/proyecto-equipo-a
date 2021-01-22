@@ -20,10 +20,20 @@ namespace proyectoRed.VentanasIntlok
     /// </summary>
     public partial class Post : UserControl
     {
-        public Post(int posicionPost)
+        int index;
+        Grid gridComentarios;
+
+        public Post(int posicionPost, int _index, Grid gridComentarios)
         {
+            this.index = _index;
+            this.gridComentarios = gridComentarios;
             this.Margin = new Thickness(0, posicionPost, 0, 0);
             InitializeComponent();
+        }
+
+        private void btnComentar_Click(object sender, RoutedEventArgs e)
+        {
+            gridComentarios.Children.Add(new Comentarios(index, gridComentarios));
         }
     }
 }

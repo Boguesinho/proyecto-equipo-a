@@ -39,12 +39,13 @@ namespace proyectoRed.VentanasIntlok
         {
             for (int i = 0; i < cantidadPosts; i++)
             {
-                gridFeed.Children.Add(new Post(i * 720));
+                gridFeed.Children.Add(new Post(i * 720, i + 1, gridComentarios));
                 gridFeed.Height += 720;
-                
+
             }
             scrollFeed.ScrollToVerticalOffset(gridFeed.Height - 500 - (cantidadPosts * 360));
 
         }
+
     }
 }
