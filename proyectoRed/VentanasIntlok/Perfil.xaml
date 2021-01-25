@@ -15,7 +15,11 @@
             <Grid>
                 <Rectangle Fill="#FF1A1A1A" HorizontalAlignment="Left" Height="42" Stroke="Transparent" VerticalAlignment="Top" Width="879"/>
                 <Label Content="Perfil" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="42" Width="879" FontFamily="Constantia" FontWeight="Bold" Foreground="White" FontSize="28"/>
-
+                <Image x:Name="img_ImgenPerfil" HorizontalAlignment="Left" Height="202" Margin="344,94,0,0" VerticalAlignment="Top" Width="198" Source="/Imagenes/profile.png"/>
+                <Button x:Name="btn_Continuar" Content="CONTINUAR" FontSize="16" HorizontalAlignment="Left" Margin="376,524,0,0" VerticalAlignment="Top" Width="138" Background="#58EB53" Foreground="Black" Click="btn_Continuar_Click"/>
+                <Label x:Name="txt_usuario" Content="User Name" HorizontalAlignment="Left" Margin="392,362,0,0" VerticalAlignment="Top" FontFamily="Constantia" FontSize="22"/>
+                <Button x:Name="btn_cambiarFoto" Content="Cambiar Foto de Perfil" FontSize="20" HorizontalAlignment="Left" Margin="334,309,0,0" VerticalAlignment="Top" Width="226" Foreground="Black" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Constantia" Click="btn_cambiarFoto_Click"/>
+                <TextBox x:Name="txt_Estado" HorizontalAlignment="Left" Height="38" Margin="344,430,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top" Width="198" FontSize="20"/>
             </Grid>
 
 
