@@ -14,6 +14,6 @@
         <PasswordBox x:Name="txtBox_Password" HorizontalAlignment="Left" Height="29" Margin="540,239,0,0" VerticalAlignment="Top" Width="151" BorderBrush="#89FFFFFF" Foreground="White"/>
         <Image HorizontalAlignment="Left" Height="168" Margin="76,157,0,0" VerticalAlignment="Top" Width="300" Source="/Imagenes/imgLogin.jpg"/>
         <Button x:Name="btn_Ingresar" Content="INGRESAR" HorizontalAlignment="Left" Margin="553,302,0,0" VerticalAlignment="Top" Width="127" Height="32" FontSize="16" Background="#58EB53" BorderBrush="{x:Null}" Foreground="Black" Click="btn_Ingresar_Click"/>
-        <Label Content="Resgistrarse..." HorizontalAlignment="Left" Margin="662,356,0,0" VerticalAlignment="Top" Foreground="#FF787C81" FontSize="11"/>
+        <Button x:Name="btn_Registrar" Content="Registrarse..." HorizontalAlignment="Left" Margin="664,365,0,0" VerticalAlignment="Top" Width="100" Height="24" FontSize="11" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF787C81" Click="btn_Registrar_Click" />
     </Grid>
 </Window>
