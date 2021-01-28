@@ -30,7 +30,7 @@ namespace proyectoRed.VentanasIntlok
         public Perfil()
         {
             InitializeComponent();
-            buscarDatosPerfil();
+            txt_usuario.Content = Constant.username;
         }
 
         private void buscarDatosPerfil()

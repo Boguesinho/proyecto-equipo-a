@@ -1,4 +1,6 @@
-﻿using proyectoRed.VentanasIntlok;
+﻿using proyectoRed.Models;
+using proyectoRed.VentanasIntlok;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -116,6 +118,31 @@ namespace proyectoRed
                     btnPerfil.Background = Brushes.White;
                     break;
 
+            }
+
+        }
+
+        private void btn_CerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            var client = new RestClient("http://192.168.100.15:80/api/");
+
+
+            var request = new RestRequest("logout", Method.POST);
+
+            request.AddHeader("Authorization",Constant.authToken);
+            request.AddParameter("token", Constant.authToken);
+
+
+
+            IRestResponse response = client.Execute(request);
+            var content = response.Content;
+            Console.WriteLine(content);
+
+            if (response.IsSuccessful)
+            {
+                Login newLogin = new Login();
+                newLogin.Show();
+                this.Close();
             }
 
         }

@@ -50,6 +50,7 @@
             <materialDesign:PackIcon Kind="Home" Width="24" Height="76" VerticalAlignment="Center" Margin="-10,117,0,460" Foreground="White" RenderTransformOrigin="3.1,0.867" />
             <Button x:Name="btnInicio" Content="" HorizontalAlignment="Left" HorizontalContentAlignment="Right" Margin="-20,117,0,0" VerticalAlignment="Top" Width="123" Height="76" FontSize="18" FontFamily="MS Reference Sans Serif" Background="Transparent" FontWeight="Bold" Foreground="White" BorderBrush="{x:Null}" Cursor="Hand" Opacity="0.1" Click="BtnInicio_Click"/>
 
+            <Button x:Name="btn_CerrarSesion" Content="Cerrar Sesion" HorizontalAlignment="Left" Margin="0,549,0,0" VerticalAlignment="Top" Width="95" RenderTransformOrigin="-0.587,-0.359" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="10" FontFamily="Constantia" FontWeight="Bold" Click="btn_CerrarSesion_Click"/>
 
             <materialDesign:PackIcon Kind="User" Width="62" Height="101" VerticalAlignment="Center" Margin="10,16,0,536" Foreground="#FF71DB77" RenderTransformOrigin="3.1,0.867" />
 

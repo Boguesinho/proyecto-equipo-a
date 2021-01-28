@@ -62,34 +62,29 @@ namespace proyectoRed.VentanasIntlok
             if (validacion())
             {
                 var client = new RestClient("http://192.168.100.15:80/api/");
-                /*
-                LoginRequest loginRequest = new LoginRequest();
-                loginRequest.User = txtBox_Usuario.Text;
-                loginRequest.Password = txtBox_Password.Password;
-                
-                JavaScriptSerializer js = new JavaScriptSerializer();
-                string jsonString = js.Serialize(loginRequest);
-                */
-                var request = new RestRequest("login", Method.POST);
-                /*
-                HttpBasicAuthenticator auth = new HttpBasicAuthenticator(txtBox_Usuario.Text, txtBox_Password.Password);
-                auth.Authenticate(client,request);
 
-                */
+
+                var request = new RestRequest("login", Method.GET);
+
+
                 request.AddParameter("username", txtBox_Usuario.Text);
                 request.AddParameter("password", txtBox_Password.Password);
 
 
-
+                
+                RestResponse<LoginResponse> response2 = (RestResponse<LoginResponse>)client.Execute<LoginResponse>(request);
+                var token = response2.Data.Token;
+                /*
                 IRestResponse response = client.Execute(request);
-                var content = response.Content;
-                String token = "Bearer: "+content;
-                Constant.authToken = token;
+                var content = response.Content;*/
+                String authtoken = "Bearer "+token;
+                Constant.authToken = authtoken;
 
-                Console.WriteLine(token);
+                Console.WriteLine(authtoken);
 
-                if (response.IsSuccessful)
+                if (response2.IsSuccessful)
                 {
+                    Constant.username=txtBox_Usuario.Text;
                     Console.WriteLine("Acceso correcto");
 
                     MainWindow main = new MainWindow();
@@ -100,9 +95,6 @@ namespace proyectoRed.VentanasIntlok
                 {
                     Console.WriteLine("Acceso incorrecto");
                 }
-                /*
-                RestResponse<LoginResponse> response2 = client.Execute<LoginResponse>(request);
-                var token = response2.Data.Token;*/
             }
             else
             {
