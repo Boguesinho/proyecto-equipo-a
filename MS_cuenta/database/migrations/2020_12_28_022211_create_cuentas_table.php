@@ -15,7 +15,7 @@ class CreateCuentasTable extends Migration
     {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('idUsuario')->unique();
+            $table->integer('idUsuario')->unique();
             //$table->foreign('idUsuario')->references('id')->on('usuarios')->onDelete('cascade');
 
             $table->string('ruta')->nullable();
