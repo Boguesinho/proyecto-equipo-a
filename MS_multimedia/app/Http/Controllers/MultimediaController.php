@@ -11,8 +11,8 @@ class MultimediaController extends Controller
 
 
     public function getImagen($ruta){
-        
-        
+        $imagen = Multimedia::where('ruta', $ruta)->first();
+        return $imagen->ruta;    
     }
 
     public function guardarImagenPerfil(Request $request){

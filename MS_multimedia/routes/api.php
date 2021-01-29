@@ -1,19 +1,9 @@
 <?php
 
+use App\Http\Controllers\MultimediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('getImagen/{ruta}', [MultimediaController::class, 'getImagen']);
+Route::post('guardarImagenPerfil', [MultimediaController::class, 'guardarImagenPerfil']);
+Route::post('guardarImagenPost', [MultimediaController::class, 'guardarImagenPost']);
