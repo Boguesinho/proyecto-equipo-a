@@ -29,6 +29,7 @@
         <Label Content="Confirmar Contraseña:" HorizontalAlignment="Left" Margin="241,277,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
         <TextBox x:Name="txtBox_Info" HorizontalAlignment="Left" Height="29" Margin="472,318,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="151" Background="{x:Null}" Foreground="White" BorderBrush="#89FFFFFF" FontSize="14"/>
         <Label Content="Info:" HorizontalAlignment="Left" Margin="454,277,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <Button x:Name="btn_IniciarSesion" Content="Iniciar Sesion" HorizontalAlignment="Left" Margin="12,23,0,0" VerticalAlignment="Top" Width="100" Height="24" FontSize="11" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF787C81" Click="btn_IniciarSesion_Click" />
 
     </Grid>
 </Window>

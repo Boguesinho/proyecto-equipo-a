@@ -92,5 +92,12 @@ namespace proyectoRed.VentanasIntlok
                 MessageBox.Show("Verifique los campos");
             }
         }
+
+        private void btn_IniciarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+            this.Close();
+        }
     }
 }
