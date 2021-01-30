@@ -31,7 +31,7 @@ return [
     ],
 
     'cuentas' => [
-        'base_url' => env('CUENTA_SERVICE_BASE_URL'),
+        'base_uri' => env('CUENTA_SERVICE_BASE_URL'),
         'secret' => env('CUENTA_SERVICE_SECRET'),
     ],
 

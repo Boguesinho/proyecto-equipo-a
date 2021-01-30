@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use Illuminate\Http\Request;
+use App\Traits\ApiResponser;
 
 
 class CuentaController extends Controller
 {
 
+    use ApiResponser;
 
-    public function create(Request $request){
+    public function create(Request $request, $idUsuario){
         $rules = [
             'nombre' => 'required|string',
             'apellidos' => 'required|string',
@@ -22,7 +24,7 @@ class CuentaController extends Controller
         $this->validate($request, $rules);
 
         $cuenta = new Cuenta();
-        $cuenta->idUsuario = $request->user()->id;
+        $cuenta->idUsuario = $idUsuario;
         $cuenta->ruta= null;
         $cuenta->nombre = $request->input('nombre');
         $cuenta->apellidos = $request->input('apellidos');
@@ -38,13 +40,11 @@ class CuentaController extends Controller
         ]);
     }
 
-    public function editInfo(Request $request){
+    public function editInfo(Request $request, $idUsuario){
         $rules = [
             'info' => 'required|string'
         ];
         $this->validate($request, $rules);
-
-        $idUsuario = $request->user()->id;
 
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
 
@@ -56,20 +56,20 @@ class CuentaController extends Controller
         ]);
     }
 
-    public function getCuenta ($idUsuario ){
-
+    public function getCuenta ($idUsuario){
+        
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
-        return $cuenta;
+        return $this->successResponse($cuenta);
     }
 
-    public function getFotoPerfil(Request $request){
-        $idUsuario = $request->user()->id;
+    public function getFotoPerfil($idUsuario){
+        //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
         return $cuenta->ruta;
     }
 
-    public function subirFotoPerfil(Request $request, $ruta){
-        $idUsuario = $request->user()->id;
+    public function subirFotoPerfil($idUsuario, $ruta){
+        //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
         $cuenta->ruta = $ruta;
         $cuenta->save();

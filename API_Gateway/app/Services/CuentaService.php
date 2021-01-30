@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Traits\ConsumesExternalService;
+use GuzzleHttp\Client;
 
 class CuentaService{
 
@@ -18,15 +19,23 @@ class CuentaService{
     }
 
     public function getCuenta($idUsuario){
-        return $this->performRequest('GET', '/getCuenta/{$idUsuario}', $idUsuario);
+        return $this->performRequest('GET', "getCuenta/{$idUsuario}");
     }
 
-    public function editCuenta($data){
-        return $this->performRequest('PUT', '/cuenta/editInfo', $data);
+    public function editCuenta($data, $idUsuario){
+        return $this->performRequest('PUT', "cuenta/editInfo/{$idUsuario}", $data);
     }
 
-    public function create($data){
-        return $this->performRequest('POST', '/cuenta/create', $data);
+    public function create($data, $idUsuario){
+        return $this->performRequest('POST', "cuenta/create/{$idUsuario}", $data);
+    }
+
+    public function getFotoPerfil($idUsuario){
+        return $this->performRequest('GET', "getFotoPerfil/{$idUsuario}");
+    }
+
+    public function subirFotoPerfil($idUsuario, $ruta){
+        return $this->performRequest('POST', "subirFotoPerfil/{$idUsuario}/{$ruta}");
     }
 
 

@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CuentaController;
 
-Route::post('cuenta/create', [CuentaController::class, 'create']);
-Route::put('cuenta/editInfo', [CuentaController::class, 'editInfo']);
+Route::post('cuenta/create/{idUsuario}', [CuentaController::class, 'create']);
+Route::put('cuenta/editInfo/{idUsuario}', [CuentaController::class, 'editInfo']);
 Route::get('getCuenta/{idUsuario}', [CuentaController::class, 'getCuenta']);
-Route::get('getFotoPerfil', [CuentaController::class, 'getFotoPerfil']);
-Route::post('subirFotoPerfil/{ruta]', [CuentaController::class, 'subirFotoPerfil']);
+Route::get('getFotoPerfil/{idUsuario}', [CuentaController::class, 'getFotoPerfil']);
+Route::post('subirFotoPerfil/{idUsuario}/{ruta]', [CuentaController::class, 'subirFotoPerfil']);
