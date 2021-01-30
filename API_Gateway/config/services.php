@@ -35,5 +35,14 @@ return [
         'secret' => env('CUENTA_SERVICE_SECRET'),
     ],
 
+    'multimedias' => [
+        'base_uri' => env('MULTIMEDIA_SERVICE_BASE_URL'),
+        'secret' => env('MULTIMEDIA_SERVICE_SECRET'),
+    ],
+
+    'posts' => [
+        'base_uri' => env('POST_SERVICE_BASE_URL'),
+        'secret' => env('POST_SERVICE_SECRET'),
+    ],
 
 ];

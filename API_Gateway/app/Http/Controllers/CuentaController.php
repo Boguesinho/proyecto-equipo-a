@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\MultimediaService;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Services\CuentaService;
-use phpDocumentor\Reflection\Types\Integer;
 
 
 class CuentaController extends Controller
@@ -13,10 +13,12 @@ class CuentaController extends Controller
     use ApiResponser;
 
     public $cuenta_service;
+    public $multimedia_service;
 
-    public function __construct(CuentaService $cuenta_service)
+    public function __construct(CuentaService $cuenta_service, MultimediaService $multimedia_service)
     {
         $this->cuenta_service = $cuenta_service;
+        $this->multimedia_service = $multimedia_service;
     }
 
 
@@ -44,9 +46,16 @@ class CuentaController extends Controller
 
     public function subirFotoPerfil(Request $request){
         $idUsuario = $request->user()->id;
-        $ruta="prueba.jpg";
+
+        $ruta= $this->successResponse($this->multimedia_service->guardarImagenPerfil($request->file('ruta')));
 
         return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $ruta));
+    }
+
+    public function getImagen(Request $request){
+        $idUsuario = $request->user()->id;
+
+        return $this->successResponse($this->multimedia_service)
     }
 
 

@@ -1,0 +1,24 @@
+1. Abrir el API GATEWAY y los demás servicios.
+
+2. Ejecutar en la terminal del API y de cada servicio los siguientes comandos:
+	composer install
+	cp .env.example .env
+	//Si no jala el comando anterior, simplemente copiar y pegar el archivo .env.example y quitarle el .example
+	php artisan jwt:secret //este solo en el api
+
+3. Dentro del .env del API GATEWAY, poner:
+	POST_SERVICE_BASE_URL = url del servicio desde otro puerto
+	POST_SERVICE_SECRET = string aleatorio de 32 caracteres http://www.unit-conversion.info/texttools/random-string-generator/
+// Lo mismo con los demás campos de los servicios
+
+4. Dentro del .env de cada servicio, poner:
+	ACCEPTED_SECRETS= POST_SERVICE_SECRET la misma llave generada
+	//lo mismo para los demás servicios
+
+5. Correr el api con:
+	php artisan serve
+
+6. Correr los servicios en diferentes puertos cada uno:
+	php artisan serve --port=8001
+
+

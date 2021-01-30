@@ -10,9 +10,9 @@ class MultimediaController extends Controller
 {
 
 
-    public function getImagen($ruta){
-        $imagen = Multimedia::where('ruta', $ruta)->first();
-        return $imagen->ruta;    
+    public function getImagen(Request $request){
+        $imagen = Multimedia::where('ruta', $request->ruta)->first();
+        return $imagen;    
     }
 
     public function guardarImagenPerfil(Request $request){
@@ -27,7 +27,8 @@ class MultimediaController extends Controller
                 $nuevamultimedia->ruta = $request->file('ruta')->store('public/Profiles');
                 $nuevamultimedia->save();
                 return response()->json([
-                    'message' => 'NUEVA Foto de perfil guardada con éxito'
+                    'message' => 'NUEVA Foto de perfil guardada con éxito',
+                    'ruta' => "$nuevamultimedia->ruta"
                 ]);
         }
         

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Traits\ConsumesExternalService;
-use GuzzleHttp\Client;
 
 class CuentaService{
 
