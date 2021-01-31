@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Multimedia;
-use App\Services\MultimediaService;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Services\CuentaService;

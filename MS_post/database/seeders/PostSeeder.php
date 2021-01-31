@@ -17,25 +17,25 @@ class PostSeeder extends Seeder
         $post = new Post();
         $post->idUsuario = 1;
         $post->descripcion = 'prueba siiuuu';
-        $post->idMultimedia = 1;
+        $post->ruta = "";
         $post->save();
 
         $post = new Post();
         $post->idUsuario = 2;
         $post->descripcion = 'prueba2 siiuuu';
-        $post->idMultimedia = 2;
+        $post->ruta = "";
         $post->save();
 
         $post = new Post();
         $post->idUsuario = 3;
         $post->descripcion = 'prueba3 siiuuu';
-        $post->idMultimedia = 3;
+        $post->ruta = "";
         $post->save();
 
         $post = new Post();
         $post->idUsuario = 3;
         $post->descripcion = 'prueba4 siiuuu';
-        $post->idMultimedia = 2;
+        $post->ruta = "";
         $post->save();
 
     }
