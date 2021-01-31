@@ -20,18 +20,18 @@ use App\Models\Post;
 //Posts
 Route::post('createPost/{idUsuario}', [PostController::class, 'createPost']);
 
-Route::get('misPosts', [PostController::class, 'misPosts']);
-Route::put('editPost/{ruta}', [PostController::class, 'editPost']);
+Route::get('misPosts/{idUsuario}', [PostController::class, 'misPosts']);
+Route::put('editPost/{idPost}', [PostController::class, 'editPost']);
 Route::delete('deletePost/{idPost}', [PostController::class, 'deletePost']);
-Route::get('getImagenPost/{ruta}', [PostController::class, 'getImagenPost']);
+Route::get('getPost/{idPost}', [PostController::class, 'getImagenPost']);
 
 //Likes
-Route::post('{idPost}/addLike', [LikeController::class, 'addLike']);
-Route::delete('{idLike}/deleteLike', [LikeController::class, 'deleteLike']);
+Route::post('{idPost}/{idUsuario}/addLike', [LikeController::class, 'addLike']);
+Route::delete('{idLike}/{idUsuario}/deleteLike', [LikeController::class, 'deleteLike']);
 Route::get('{idPost}/getNumLikes', [LikeController::class, 'getNumLikes']);
 
 //Comentarios
-Route::post('{idPost}/addComentario', [ComentarioController::class, 'addComentario']);
-Route::put('{idPost}/{idComentario}/editComentario', [ComentarioController::class, 'editComentario']);
+Route::post('{idPost}/{idUsuario}/addComentario', [ComentarioController::class, 'addComentario']);
+Route::put('{idPost}/{idUsuario}/editComentario', [ComentarioController::class, 'editComentario']);
 Route::delete('{idComentario}/deleteComentario', [ComentarioController::class, 'deleteComentario']);
 Route::get('{idPost}/getComentarios', [ComentarioController::class, 'getComentarios']);

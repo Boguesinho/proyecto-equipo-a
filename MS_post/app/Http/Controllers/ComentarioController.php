@@ -31,18 +31,15 @@ class ComentarioController extends Controller
 
     }
 
-    public function editComentario (Request $request, $idPost, $idcomentario){
+    public function editComentario (Request $request, $idPost, $idUsuario){
 
         $rules = [
             'comentario'=>'required|string'
         ];
         $this->validate($request, $rules);
 
-        $comentario=Comentario::find($idcomentario);
-        $comentario->idUsuario = $request->user()->id;
-        $comentario->idPost = $idPost;
+        $comentario=Comentario::where('idUsuario', $idUsuario)->where('idPost', $idPost );
         $comentario->comentario = $request->input('comentario');
-
         $comentario->save();
 
         return response()->json([
@@ -51,9 +48,9 @@ class ComentarioController extends Controller
 
     }
 
-    public function deleteComentario (Request $request, int $idcomentario){
+    public function deleteComentario ($idPost, $idUsuario){
 
-        $comentario=Comentario::find($idcomentario);
+        $comentario=Comentario::where('idUsuario', $idUsuario)->where('idPost', $idPost)->first();
         $comentario->delete();
 
         return response()->json([
@@ -62,7 +59,7 @@ class ComentarioController extends Controller
 
     }
 
-    public function getComentarios (int $idPost){
+    public function getComentarios ($idPost){
         $comentarios = Comentario::orderBy('created_at', 'desc')->where('idPost', $idPost)->get();
         return response()->json($comentarios);
     }

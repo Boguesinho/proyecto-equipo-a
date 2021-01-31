@@ -24,15 +24,14 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //Servicio Post
     //Posts
     Route::post('createPost', [PostController::class, 'createPost']);
-
     Route::get('misPosts', [PostController::class, 'misPosts']);
-    Route::put('editPost/{ruta}', [PostController::class, 'editPost']);
+    Route::put('editPost/{idPost}', [PostController::class, 'editPost']);
     Route::delete('deletePost/{idPost}', [PostController::class, 'deletePost']);
-    Route::get('getImagenPost/{ruta}', [PostController::class, 'getImagenPost']);
+    Route::get('getPost/{idPost}', [PostController::class, 'getPost']);
 
     //Likes
     Route::post('{idPost}/addLike', [PostController::class, 'addLike']);
-    Route::delete('{idLike}/deleteLike', [PostController::class, 'deleteLike']);
+    Route::delete('{idPost}/deleteLike', [PostController::class, 'deleteLike']);
     Route::get('{idPost}/getNumLikes', [PostController::class, 'getNumLikes']);
 
     //Comentarios

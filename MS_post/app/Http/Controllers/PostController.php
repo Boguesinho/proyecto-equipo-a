@@ -13,17 +13,10 @@ use Whoops\Run;
 class PostController extends Controller
 {
 
-    public function misPosts(Request $request){
-        $posts = Post::where('idUsuario', $request->user()->id)->get();
+    public function misPosts($idUsuario){
+        $posts = Post::where('idUsuario', $idUsuario)->get();
         return response()->json($posts);
     }
-
-    /*
-    public function getPostsCount(Request $request){
-        $posts = Post::where('idUsuario', $request->user()->id)->get();
-        return response()->json($posts->count());
-    }
-    */
 
     public function createPost(Request $request, $idUsuario){
         $post = new Post();
@@ -38,16 +31,14 @@ class PostController extends Controller
         ]);
     }
 
-    public function editPost(Request $request, int $idpost, $ruta){
+    public function editPost(Request $request, $idpost){
         $rules = [
-            'descripcion'=>'required|string',
-            'ruta'=>'required|string'
+            'descripcion'=>'required|string'
         ];
         $this->validate($request, $rules);
 
         $post=Post::findOrFail($idpost);
         $post->descripcion = $request->input('descripcion');
-        $post->ruta = $ruta;
 
         $post->save();
 
@@ -56,8 +47,9 @@ class PostController extends Controller
         ]);
     }
 
-    public function deletePost(int $idpost){
+    public function deletePost($idpost){
         $post=Post::findOrFail($idpost);
+        $post->delete();
 
         return response()->json([
             'message' => 'Post eliminado con éxito'
@@ -65,9 +57,9 @@ class PostController extends Controller
 
     }
 
-    public function getImagenPost($ruta){
-        $imagen = Post::findOrFail($ruta);
-        return $imagen->ruta;
+    public function getPost($idPost){
+        $post = Post::findOrFail($idPost);
+        return $post;
     }
 
 }
