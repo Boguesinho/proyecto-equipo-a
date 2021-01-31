@@ -18,10 +18,7 @@ class CuentaController extends Controller
     public function __construct(CuentaService $cuenta_service)
     {
         $this->cuenta_service = $cuenta_service;
-
     }
-
-
 
     public function create(Request $request)
     {
@@ -41,7 +38,9 @@ class CuentaController extends Controller
 
     public function getFotoPerfil(Request $request){
         $idUsuario = $request->user()->id;
-        return $this->successResponse($this->cuenta_service->getFotoPerfil($idUsuario));
+        $ruta = $this->cuenta_service->getFotoPerfil($idUsuario);
+        $imagen = Multimedia::where('ruta', $ruta)->first();
+        return $imagen->ruta;
     }
 
     public function subirFotoPerfil(Request $request){
@@ -64,12 +63,5 @@ class CuentaController extends Controller
             "message" => "no se subió nada aaa"
         ]);
     }
-
-    public function getImagen(Request $request){
-        $idUsuario = $request->user()->id;
-
-
-    }
-
 
 }

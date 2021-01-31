@@ -64,7 +64,6 @@ class CuentaController extends Controller
     }
 
     public function getFotoPerfil($idUsuario){
-        //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
         return $cuenta->ruta;
     }

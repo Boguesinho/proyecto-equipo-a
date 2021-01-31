@@ -15,7 +15,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('logout',[UserController::class, 'logout']); //Cerrar sesión
     //Servicio Cuenta
     Route::get('getCuenta', [CuentaController::class, 'getCuenta']);
-    Route::post('cuenta/create', [CuentaController::class, 'create']);
+    Route::post('cuenta/create', [CuentaController::class, 'register']);
     Route::put('cuenta/editInfo', [CuentaController::class, 'editInfo']);
     Route::get('getFotoPerfil', [CuentaController::class, 'getFotoPerfil']);
     Route::post('subirFotoPerfil', [CuentaController::class, 'subirFotoPerfil']);
