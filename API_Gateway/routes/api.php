@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CuentaController;
-use App\Http\Controllers\MultimediaController;
 
 //Route::rpc('/v1/endpoint', [TennisProcedure::class]);
 
@@ -24,7 +23,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     //Servicio Post
 
 
-    //Servicio Multimedia
-    Route::post('guardarImagenPerfil', [MultimediaController::class, 'guardarImagenPerfil']);
+
+
 
 });

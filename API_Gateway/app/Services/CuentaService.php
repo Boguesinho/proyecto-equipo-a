@@ -33,8 +33,8 @@ class CuentaService{
         return $this->performRequest('GET', "getFotoPerfil/{$idUsuario}");
     }
 
-    public function subirFotoPerfil($idUsuario, $ruta){
-        return $this->performRequest('POST', "subirFotoPerfil/{$idUsuario}/{$ruta}");
+    public function subirFotoPerfil($idUsuario, $data){
+        return $this->performRequest('POST', "subirFotoPerfil/{$idUsuario}", $data);
     }
 
 

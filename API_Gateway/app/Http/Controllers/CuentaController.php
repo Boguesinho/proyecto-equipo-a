@@ -13,12 +13,11 @@ class CuentaController extends Controller
     use ApiResponser;
 
     public $cuenta_service;
-    public $multimedia_service;
 
-    public function __construct(CuentaService $cuenta_service, MultimediaService $multimedia_service)
+    public function __construct(CuentaService $cuenta_service)
     {
         $this->cuenta_service = $cuenta_service;
-        $this->multimedia_service = $multimedia_service;
+
     }
 
 
@@ -45,11 +44,19 @@ class CuentaController extends Controller
     }
 
     public function subirFotoPerfil(Request $request){
+        $rules = [
+            'ruta'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+        ];
+        $this->validate($request, $rules);
+
         $idUsuario = $request->user()->id;
-
-        $ruta= $this->successResponse($this->multimedia_service->guardarImagenPerfil($request->file('ruta')));
-
-        return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $ruta));
+        if ($request->hasFile("ruta")) {
+            $request->file('ruta');
+            return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $request->ruta));
+        }
+        return response()->json([
+            "message" => "no se subió nada aaa"
+        ]);
     }
 
     public function getImagen(Request $request){
