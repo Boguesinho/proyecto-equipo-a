@@ -55,7 +55,7 @@ class CuentaController extends Controller
     public function getImagen(Request $request){
         $idUsuario = $request->user()->id;
 
-        return $this->successResponse($this->multimedia_service)
+        return $this->successResponse($this->multimedia_service);
     }
 
 
