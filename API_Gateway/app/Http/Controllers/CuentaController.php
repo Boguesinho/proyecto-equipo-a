@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Multimedia;
 use App\Services\MultimediaService;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
@@ -51,8 +52,13 @@ class CuentaController extends Controller
 
         $idUsuario = $request->user()->id;
         if ($request->hasFile("ruta")) {
-            $request->file('ruta');
-            return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $request->ruta));
+            $imagen = new Multimedia();
+            $imagen->ruta = $request->file('ruta')->store('public/profiles');
+            $imagen->save();
+            $ruta = response()->json(
+                $imagen->ruta
+            );
+            return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $ruta));
         }
         return response()->json([
             "message" => "no se subió nada aaa"
@@ -62,7 +68,7 @@ class CuentaController extends Controller
     public function getImagen(Request $request){
         $idUsuario = $request->user()->id;
 
-        return $this->successResponse($this->multimedia_service);
+
     }
 
 

@@ -72,10 +72,7 @@ class CuentaController extends Controller
     public function subirFotoPerfil($idUsuario, Request $request){
         //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
-        $imagen = new Multimedia();
-        $imagen->ruta = $request->file('ruta')->store('public/profile/');
-        $imagen->save();
-        $cuenta->ruta = $imagen->ruta;
+        $cuenta->ruta = $request->input('original');
         $cuenta->save();
         return response()->json([
             'message' => 'Foto de perfil guardada con éxito',
