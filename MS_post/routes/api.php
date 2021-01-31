@@ -18,8 +18,9 @@ use App\Models\Post;
 */
 
 //Posts
+Route::post('createPost/{idUsuario}', [PostController::class, 'createPost']);
+
 Route::get('misPosts', [PostController::class, 'misPosts']);
-Route::post('createPost/{ruta}', [PostController::class, 'createPost']);
 Route::put('editPost/{ruta}', [PostController::class, 'editPost']);
 Route::delete('deletePost/{idPost}', [PostController::class, 'deletePost']);
 Route::get('getImagenPost/{ruta}', [PostController::class, 'getImagenPost']);

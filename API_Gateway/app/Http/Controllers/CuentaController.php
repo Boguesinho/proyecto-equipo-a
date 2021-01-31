@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\MultimediaService;
+use App\Models\Multimedia;
 use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Services\CuentaService;
@@ -13,15 +13,11 @@ class CuentaController extends Controller
     use ApiResponser;
 
     public $cuenta_service;
-    public $multimedia_service;
 
-    public function __construct(CuentaService $cuenta_service, MultimediaService $multimedia_service)
+    public function __construct(CuentaService $cuenta_service)
     {
         $this->cuenta_service = $cuenta_service;
-        $this->multimedia_service = $multimedia_service;
     }
-
-
 
     public function create(Request $request)
     {
@@ -41,22 +37,30 @@ class CuentaController extends Controller
 
     public function getFotoPerfil(Request $request){
         $idUsuario = $request->user()->id;
-        return $this->successResponse($this->cuenta_service->getFotoPerfil($idUsuario));
+        $ruta = $this->cuenta_service->getFotoPerfil($idUsuario);
+        $imagen = Multimedia::where('ruta', $ruta)->first();
+        return $imagen->ruta;
     }
 
     public function subirFotoPerfil(Request $request){
+        $rules = [
+            'ruta'=>'required|image|mimes:jpeg,png,jpg|max:2048'
+        ];
+        $this->validate($request, $rules);
+
         $idUsuario = $request->user()->id;
-
-        $ruta= $this->successResponse($this->multimedia_service->guardarImagenPerfil($request->file('ruta')));
-
-        return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $ruta));
+        if ($request->hasFile("ruta")) {
+            $imagen = new Multimedia();
+            $imagen->ruta = $request->file('ruta')->store('public/profiles');
+            $imagen->save();
+            $ruta = response()->json(
+                $imagen->ruta
+            );
+            return $this->successResponse($this->cuenta_service->subirFotoPerfil($idUsuario, $ruta));
+        }
+        return response()->json([
+            "message" => "no se subió nada aaa"
+        ]);
     }
-
-    public function getImagen(Request $request){
-        $idUsuario = $request->user()->id;
-
-        return $this->successResponse($this->multimedia_service)
-    }
-
 
 }

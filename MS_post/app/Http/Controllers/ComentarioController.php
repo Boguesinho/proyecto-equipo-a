@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class ComentarioController extends Controller
 {
-    public function addComentario (Request $request, int $idPost){
+    public function addComentario (Request $request, $idUsuario, $idPost){
         $rules = [
             'comentario'=>'required|string'
         ];
@@ -18,19 +18,20 @@ class ComentarioController extends Controller
 
 
         $comentario = new Comentario();
-        $comentario->idUsuario = $request->user()->id;
+        $comentario->idUsuario = $idUsuario;
         $comentario->idPost = $idPost;
         $comentario->comentario = $request->input('comentario');
 
         $comentario->save();
 
         return response()->json([
-            'message' => 'Comentario guardado con éxito'
+            'message' => 'Comentario guardado con éxito',
+            'comentario' => "$comentario->comentario"
         ]);
 
     }
 
-    public function editComentario (Request $request, int $idPost, int $idcomentario){
+    public function editComentario (Request $request, $idPost, $idcomentario){
 
         $rules = [
             'comentario'=>'required|string'

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
+use App\Models\Multimedia;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponser;
 
@@ -57,26 +58,25 @@ class CuentaController extends Controller
     }
 
     public function getCuenta ($idUsuario){
-        
+
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
         return $this->successResponse($cuenta);
     }
 
     public function getFotoPerfil($idUsuario){
-        //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
         return $cuenta->ruta;
     }
 
-    public function subirFotoPerfil($idUsuario, $ruta){
+    public function subirFotoPerfil($idUsuario, Request $request){
         //$idUsuario = $request->user()->id;
         $cuenta = Cuenta::where('idUsuario', $idUsuario)->first();
-        $cuenta->ruta = $ruta;
+        $cuenta->ruta = $request->input('original');
         $cuenta->save();
         return response()->json([
-            'message' => 'Foto de perfil guardada con éxito'
+            'message' => 'Foto de perfil guardada con éxito',
+            'ruta' => $cuenta->ruta
         ]);
-
 
     }
 

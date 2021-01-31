@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class LikeController extends Controller
 {
-    public function addLike (Request $request, int $idPost){
+    public function addLike ($idPost, $idUsuario){
         $like = new Like();
-        $like->idUsuario = $request->user()->id;
+        $like->idUsuario = $idUsuario;
         $like->idPost = $idPost;
         $like->save();
 
@@ -20,9 +20,9 @@ class LikeController extends Controller
 
     }
 
-    public function deleteLike (Request $request, int $idlike){
+    public function deleteLike ($idPost, $idUsuario){
 
-        $like=Like::find($idlike);
+        $like=Like::where('idPost', $idPost)->where('idUsuario', $idUsuario)->first();
         $like->delete();
 
         return response()->json([
@@ -30,7 +30,7 @@ class LikeController extends Controller
         ]);
     }
 
-    public function getNumLikes (int $idPost){
+    public function getNumLikes ($idPost){
         $like = Like::where('idPost', $idPost)->count()->get();
         return response()->json($like);
     }

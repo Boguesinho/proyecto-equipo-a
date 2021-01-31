@@ -25,21 +25,16 @@ class PostController extends Controller
     }
     */
 
-    public function createPost(Request $request, $ruta){
-        $rules = [
-            'descripcion'=>'required|string',
-            'ruta'=>'required|string'
-        ];
-        $this->validate($request, $rules);
-
+    public function createPost(Request $request, $idUsuario){
         $post = new Post();
-        $post->idUsuario = $request->user()->id;
-        $post->descripcion = $request->input('descripcion');
-
-        $post->ruta = $ruta;
+        $post->idUsuario = $idUsuario;
+        $post->descripcion = "prueba";
+        $post->ruta = $request->input('original');
         $post->save();
         return response()->json([
-            'message' => 'Post creado con éxito'
+            'message' => 'Post creado con éxito',
+            'ruta' => "$post->ruta",
+            'descripcion' => "$post->descripcion"
         ]);
     }
 
@@ -53,7 +48,7 @@ class PostController extends Controller
         $post=Post::findOrFail($idpost);
         $post->descripcion = $request->input('descripcion');
         $post->ruta = $ruta;
-        
+
         $post->save();
 
         return response()->json([
@@ -63,7 +58,7 @@ class PostController extends Controller
 
     public function deletePost(int $idpost){
         $post=Post::findOrFail($idpost);
-        
+
         return response()->json([
             'message' => 'Post eliminado con éxito'
         ]);
